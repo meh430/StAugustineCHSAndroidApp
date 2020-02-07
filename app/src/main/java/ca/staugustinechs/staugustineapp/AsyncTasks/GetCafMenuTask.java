@@ -1,11 +1,14 @@
 package ca.staugustinechs.staugustineapp.AsyncTasks;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +22,7 @@ public class GetCafMenuTask extends AsyncTask<String, Void, List<CafMenuItem>> {
     private CafMenuFragment cafMenuFragment;
     private boolean dailyMenu;
 
-    public GetCafMenuTask(CafMenuFragment cafMenuFragment, boolean dailyMenu){
+    public GetCafMenuTask(CafMenuFragment cafMenuFragment, boolean dailyMenu) {
         this.cafMenuFragment = cafMenuFragment;
         //USED TO KNOW WHETHER TO FETCH THE REGULAR OR DAILY MENU
         this.dailyMenu = dailyMenu;
@@ -37,30 +40,30 @@ public class GetCafMenuTask extends AsyncTask<String, Void, List<CafMenuItem>> {
         while (!task.isComplete()) {
         }
 
-        //while (!imageTask.isComplete()) {
-        //}
+        while (!imageTask.isComplete()) {
+        }
 
-        if (task.isSuccessful()) {// && imageTask.isSuccessful()) {
-            //Map<String, Object> cafImages = Objects.requireNonNull(imageTask.getResult()).getData();
+        if (task.isSuccessful() && imageTask.isSuccessful()) {
+            Map<String, Object> cafImages = Objects.requireNonNull(imageTask.getResult()).getData();
             String itemName;
             List<CafMenuItem> items = new ArrayList<>();
             for (Map.Entry<String, Object> entry : (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getData())).entrySet()) {
                 itemName = entry.getKey().trim();
-                //assert cafImages != null;
-                // boolean hasImage = cafImages.containsKey(itemName) &&
-                //       !((String) Objects.requireNonNull(cafImages.get(itemName))).equalsIgnoreCase("");
-                // String imgUrl = hasImage ?
-                //         ((String) cafImages.get(itemName)) : "https://i.kym-cdn.com/photos/images/original/001/067/012/a30.jpg_large";
-                //Bitmap img = null;
-                // try {
-                //     img = Picasso.get().load(imgUrl).resize(300, 400).rotate(90).centerCrop().get();
-                // } catch (IOException e) {
-                //   e.printStackTrace();
-                // }
+                assert cafImages != null;
+                boolean hasImage = cafImages.containsKey(itemName) &&
+                        !((String) Objects.requireNonNull(cafImages.get(itemName))).equalsIgnoreCase("");
+                String imgUrl = hasImage ?
+                        ((String) cafImages.get(itemName)) : "https://i.kym-cdn.com/photos/images/original/001/067/012/a30.jpg_large";
+                Bitmap img = null;
+                try {
+                    img = Picasso.get().load(imgUrl).resize(300, 400).rotate(90).centerCrop().get();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 //GO THROUGH EACH ENTRY PAIR (KEY: ITEM NAME, VALUE: PRICE)
                 //CREATE EACH CAF MENU ITEM AND SAVE THEM INTO THE ARRAY
                 items.add(new CafMenuItem(entry.getKey(),
-                        entry.getValue() instanceof Long ? (long) entry.getValue() : (double) entry.getValue()));
+                        entry.getValue() instanceof Long ? (long) entry.getValue() : (double) entry.getValue(), img));
             }
             return items;
         }

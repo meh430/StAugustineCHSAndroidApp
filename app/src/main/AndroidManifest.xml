@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="ca.staugustinechs.staugustineapp">
-
     <!-- ALL PERMISSIONS AND FEATURES THAT THIS APP USES. YOU SHOULD REMOVE THE ONES YOU DON'T USE -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -33,7 +32,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/day_widget_info" />
         </receiver>
-
         <!--
          LAUNCHER ACTIVITY. WE GIVE IT THE SPECIAL Launcher APP THEME 
              SO THAT WE CAN DISPLAY THE SCHOOL LOGO WHILE THE APP IS LOADING
@@ -65,6 +63,15 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".Activities.WebActivity"
+            android:label="Web"
+            android:configChanges="orientation|keyboardHidden|screenSize|uiMode"
+            android:parentActivityName=".Activities.Main"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".Activities.Login"
             android:screenOrientation="portrait" />

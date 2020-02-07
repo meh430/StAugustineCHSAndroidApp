@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+    <group android:checkableBehavior="single">
+        <item android:title="Resources">
+            <menu>
+                <!--TODO:add icons later-->
+                <item
+                    android:id="@+id/staff_dir"
+                    android:title="Staff Directory" />
+
+                <item
+                    android:id="@+id/calendar"
+                    android:title="Events/Calendar" />
+            </menu>
+        </item>
+        <item android:title="Online Environments">
+            <menu>
+                <item
+                    android:id="@+id/classroom"
+                    android:title="Google Classroom" />
+
+                <item
+                    android:id="@+id/d2l"
+                    android:title="D2L" />
+            </menu>
+        </item>
+
+        <item android:title="Tools">
+            <menu>
+                <item
+                    android:id="@+id/reset_password"
+                    android:title="Reset YCDSB Password" />
+                <item
+                    android:id="@+id/blueprint"
+                    android:title="My Blueprint" />
+
+                <item
+                    android:id="@+id/library"
+                    android:title="Library" />
+
+                <item
+                    android:id="@+id/guidance"
+                    android:title="Guidance" />
+
+                <item
+                    android:id="@+id/Map"
+                    android:title="D2L" />
+
+                <item
+                    android:id="@+id/share_app"
+                    android:title="Share This App!" />
+            </menu>
+        </item>
+
+        <item android:title="Social Media">
+            <menu>
+                <item
+                    android:id="@+id/twitter"
+                    android:title="Twitter" />
+
+                <item
+                    android:id="@+id/insta"
+                    android:title="Instagram" />
+            </menu>
+        </item>
+
+    </group>
+
+</menu>

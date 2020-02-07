@@ -65,6 +65,7 @@ import ca.staugustinechs.staugustineapp.R;
 public class Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener, UserGetter, IconGetter {
 
+    public static final String WEB_SELECT = "WEBSELECTION", WEB_NAME = "WEBNAME";
     public static final String CALENDAR_ADDED = "calendarAdded.dat";
     public static final int STUDENT = 0, TEACHER = 1, DEV = 2;
     public static final int IMG_QUALITY = 100;
@@ -74,7 +75,7 @@ public class Main extends AppCompatActivity
 
     Toolbar toolbar;
     DrawerLayout drawer;
-    NavigationView navigationView;
+    NavigationView navigationView, rightNavigationView;
 
     private GetUserTask userTask;
 
@@ -159,6 +160,9 @@ public class Main extends AppCompatActivity
                     navigationView.setCheckedItem(R.id.nav_home);
                     navigationView.setNavigationItemSelectedListener(this);
 
+                    rightNavigationView = findViewById(R.id.nav_view_right);
+                    rightNavigationView.setNavigationItemSelectedListener(this);
+
                     //UPDATE APP COLORS
                     this.updateColors();
 
@@ -166,7 +170,7 @@ public class Main extends AppCompatActivity
                         //IF USER DOESN'T HAVE THE NEWEST VERSION, SHOOT THEM A MESSAGE...
                         PackageInfo info = this.getPackageManager()
                                 .getPackageInfo(this.getPackageName(), PackageManager.GET_ACTIVITIES);
-                        if(!AppUtils.ANDROID_VERSION.equals(info.versionName)){
+                        if (!AppUtils.ANDROID_VERSION.equals(info.versionName)) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             builder.setTitle("New Update Available!");
                             builder.setMessage("There is a new update available for the app on the Play store!" +
@@ -299,7 +303,7 @@ public class Main extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        if(drawer != null){
+        if (drawer != null) {
             //ON BACK PRESSED, CLOSE THE DRAWER IF IT IS OPEN
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
@@ -316,6 +320,7 @@ public class Main extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        Intent rightMenuIntent;
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
@@ -385,6 +390,12 @@ public class Main extends AppCompatActivity
                 });
 
                 redirectDialog.show();
+                break;
+            case R.id.staff_dir:
+                rightMenuIntent = new Intent(this, WebActivity.class);
+                rightMenuIntent.putExtra(WEB_SELECT, "https://www.ycdsb.ca/stau/our-school/staff-directory/");
+                rightMenuIntent.putExtra(WEB_NAME, "Staff Directory");
+                startActivity(rightMenuIntent);
                 break;
         }
 

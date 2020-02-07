@@ -41,4 +41,5 @@
             \n- Attending any Titans event as an individual not with your homeroom(sports, art, drama, semi, carnival, escape room, coffee house, banquets, movie night etc but excludes kahoots) -> 80
             \n- Active participant in any Titan event i.e. performing in coffeehouse, participating in a buy-out, Titan Tuesday competition, costume contest, winning a kahoot, etc.(excluding sports teams, art, drama)*on top of the 80 points given for attending the Titans event* -> 80</item>
     </string-array>
+    <string name="title_activity_web">WebActivity</string>
 </resources>

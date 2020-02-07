@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start"
+    tools:openDrawer="end"
     tools:context=".Activities.Main">
 
     <LinearLayout
@@ -42,5 +42,14 @@
         android:background="@color/drawerBackground"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/activity_home_drawer"/>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_right"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true"
+        android:background="@color/drawerBackground"
+        app:menu="@menu/home_right_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

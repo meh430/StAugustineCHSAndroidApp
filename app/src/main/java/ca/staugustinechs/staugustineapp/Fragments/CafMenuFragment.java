@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.DateFormat;
@@ -60,7 +60,7 @@ public class CafMenuFragment extends Fragment {
         }else{
             cmDailyHeader.setText(today + " Menu");
             menu = view.findViewById(R.id.cmMenu);
-            menu.setLayoutManager(new LinearLayoutManager(this.getContext()) {
+            menu.setLayoutManager(new GridLayoutManager(this.getContext(), 2) {
                 @Override
                 public boolean canScrollVertically(){
                     return false;
@@ -70,8 +70,8 @@ public class CafMenuFragment extends Fragment {
             task = new GetCafMenuTask(this, true);
             task.execute();
         }
-
-        menuRegular.setLayoutManager(new LinearLayoutManager(this.getContext()) {
+        //change to grid layout for pics
+        menuRegular.setLayoutManager(new GridLayoutManager(this.getContext(), 2) {
             @Override
             public boolean canScrollVertically(){
                 return false;
