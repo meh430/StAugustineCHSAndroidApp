@@ -22,6 +22,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ShareCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -308,6 +309,9 @@ public class Main extends AppCompatActivity
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
                 return;
+            } else if (drawer.isDrawerOpen(GravityCompat.END)) {
+                drawer.closeDrawer(GravityCompat.END);
+                return;
             }
         }
         super.onBackPressed();
@@ -315,7 +319,19 @@ public class Main extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.home_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.right_drawer) {
+            drawer.openDrawer(GravityCompat.END);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -394,7 +410,41 @@ public class Main extends AppCompatActivity
             case R.id.staff_dir:
                 rightMenuIntent = new Intent(this, WebActivity.class);
                 rightMenuIntent.putExtra(WEB_SELECT, "https://www.ycdsb.ca/stau/our-school/staff-directory/");
-                rightMenuIntent.putExtra(WEB_NAME, "Staff Directory");
+                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
+                startActivity(rightMenuIntent);
+                break;
+            case R.id.calendar:
+                rightMenuIntent = new Intent(this, WebActivity.class);
+                rightMenuIntent.putExtra(WEB_SELECT, "https://www.ycdsb.ca/stau/our-school/calendar/");
+                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
+                startActivity(rightMenuIntent);
+                break;
+            case R.id.titan_times:
+                rightMenuIntent = new Intent(this, WebActivity.class);
+                rightMenuIntent.putExtra(WEB_SELECT, "https://titantimes.live/");
+                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
+                startActivity(rightMenuIntent);
+                break;
+            case R.id.share_app:
+                String mimeType = "text/plain";
+
+                ShareCompat.IntentBuilder
+                        .from(this)
+                        .setType(mimeType)
+                        .setChooserTitle("Share this app with:")
+                        .setText("https://play.google.com/store/apps/details?id=ca.staugustinechs.staugustineapp")
+                        .startChooser();
+                break;
+            case R.id.twitter:
+                rightMenuIntent = new Intent(this, WebActivity.class);
+                rightMenuIntent.putExtra(WEB_SELECT, "https://twitter.com/YCDSB");
+                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
+                startActivity(rightMenuIntent);
+                break;
+            case R.id.insta:
+                rightMenuIntent = new Intent(this, WebActivity.class);
+                rightMenuIntent.putExtra(WEB_SELECT, "https://www.instagram.com/sachsapp/?hl=en");
+                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
                 startActivity(rightMenuIntent);
                 break;
         }

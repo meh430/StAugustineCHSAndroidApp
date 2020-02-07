@@ -13,6 +13,10 @@
                 <item
                     android:id="@+id/calendar"
                     android:title="Events/Calendar" />
+
+                <item
+                    android:id="@+id/titan_times"
+                    android:title="Titan Times" />
             </menu>
         </item>
         <item android:title="Online Environments">
