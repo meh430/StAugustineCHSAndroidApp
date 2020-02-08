@@ -7,6 +7,9 @@
             <menu>
                 <!--TODO:add icons later-->
                 <item
+                    android:id="@+id/aug_home"
+                    android:title="St. Augustine Home" />
+                <item
                     android:id="@+id/staff_dir"
                     android:title="Staff Directory" />
 
@@ -17,6 +20,10 @@
                 <item
                     android:id="@+id/titan_times"
                     android:title="Titan Times" />
+
+                <item
+                    android:id="@+id/app_site"
+                    android:title="App Site" />
             </menu>
         </item>
         <item android:title="Online Environments">
@@ -67,6 +74,10 @@
                 <item
                     android:id="@+id/insta"
                     android:title="Instagram" />
+
+                <item
+                    android:id="@+id/contact"
+                    android:title="Contact" />
             </menu>
         </item>
 

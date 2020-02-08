@@ -41,8 +41,8 @@ public class WebActivity extends AppCompatActivity {
 
         WebViewClient client = new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return super.shouldOverrideUrlLoading(view, url);
+            public boolean shouldOverrideUrlLoading(WebView view, String link) {
+                return super.shouldOverrideUrlLoading(view, link);
             }
         };
         updateColors();

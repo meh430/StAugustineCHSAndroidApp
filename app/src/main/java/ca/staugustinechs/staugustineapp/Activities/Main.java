@@ -447,6 +447,24 @@ public class Main extends AppCompatActivity
                 rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
                 startActivity(rightMenuIntent);
                 break;
+            case R.id.aug_home:
+                rightMenuIntent = new Intent(this, WebActivity.class);
+                rightMenuIntent.putExtra(WEB_SELECT, "https://www.ycdsb.ca/stau/");
+                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
+                startActivity(rightMenuIntent);
+                break;
+            case R.id.app_site:
+                rightMenuIntent = new Intent(this, WebActivity.class);
+                rightMenuIntent.putExtra(WEB_SELECT, "https://app.staugustinechs.ca/");
+                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
+                startActivity(rightMenuIntent);
+                break;
+            case R.id.contact:
+                rightMenuIntent = new Intent(this, WebActivity.class);
+                rightMenuIntent.putExtra(WEB_SELECT, "https://www.ycdsb.ca/stau/contact/");
+                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
+                startActivity(rightMenuIntent);
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
