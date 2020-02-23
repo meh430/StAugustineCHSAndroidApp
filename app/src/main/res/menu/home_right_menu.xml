@@ -56,10 +56,6 @@
                     android:title="Guidance" />
 
                 <item
-                    android:id="@+id/Map"
-                    android:title="D2L" />
-
-                <item
                     android:id="@+id/share_app"
                     android:title="Share This App!" />
             </menu>

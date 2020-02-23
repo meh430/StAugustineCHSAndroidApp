@@ -336,7 +336,6 @@ public class Main extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Intent rightMenuIntent;
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
@@ -408,22 +407,13 @@ public class Main extends AppCompatActivity
                 redirectDialog.show();
                 break;
             case R.id.staff_dir:
-                rightMenuIntent = new Intent(this, WebActivity.class);
-                rightMenuIntent.putExtra(WEB_SELECT, "https://www.ycdsb.ca/stau/our-school/staff-directory/");
-                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
-                startActivity(rightMenuIntent);
+                startWebActivity("https://www.ycdsb.ca/stau/our-school/staff-directory/", item.getTitle().toString());
                 break;
             case R.id.calendar:
-                rightMenuIntent = new Intent(this, WebActivity.class);
-                rightMenuIntent.putExtra(WEB_SELECT, "https://www.ycdsb.ca/stau/our-school/calendar/");
-                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
-                startActivity(rightMenuIntent);
+                startWebActivity("https://www.ycdsb.ca/stau/our-school/calendar/", item.getTitle().toString());
                 break;
             case R.id.titan_times:
-                rightMenuIntent = new Intent(this, WebActivity.class);
-                rightMenuIntent.putExtra(WEB_SELECT, "https://titantimes.live/");
-                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
-                startActivity(rightMenuIntent);
+                startWebActivity("https://titantimes.live/", item.getTitle().toString());
                 break;
             case R.id.share_app:
                 String mimeType = "text/plain";
@@ -436,39 +426,60 @@ public class Main extends AppCompatActivity
                         .startChooser();
                 break;
             case R.id.twitter:
-                rightMenuIntent = new Intent(this, WebActivity.class);
-                rightMenuIntent.putExtra(WEB_SELECT, "https://twitter.com/YCDSB");
-                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
-                startActivity(rightMenuIntent);
+                startWebActivity("https://twitter.com/YCDSB", item.getTitle().toString());
                 break;
             case R.id.insta:
-                rightMenuIntent = new Intent(this, WebActivity.class);
-                rightMenuIntent.putExtra(WEB_SELECT, "https://www.instagram.com/sachsapp/?hl=en");
-                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
-                startActivity(rightMenuIntent);
+                startWebActivity("https://www.instagram.com/sachsapp/?hl=en", item.getTitle().toString());
                 break;
             case R.id.aug_home:
-                rightMenuIntent = new Intent(this, WebActivity.class);
-                rightMenuIntent.putExtra(WEB_SELECT, "https://www.ycdsb.ca/stau/");
-                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
-                startActivity(rightMenuIntent);
+                startWebActivity("https://www.ycdsb.ca/stau/", item.getTitle().toString());
                 break;
             case R.id.app_site:
-                rightMenuIntent = new Intent(this, WebActivity.class);
-                rightMenuIntent.putExtra(WEB_SELECT, "https://app.staugustinechs.ca/");
-                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
-                startActivity(rightMenuIntent);
+                startWebActivity("https://app.staugustinechs.ca/", item.getTitle().toString());
                 break;
             case R.id.contact:
-                rightMenuIntent = new Intent(this, WebActivity.class);
-                rightMenuIntent.putExtra(WEB_SELECT, "https://www.ycdsb.ca/stau/contact/");
-                rightMenuIntent.putExtra(WEB_NAME, item.getTitle());
-                startActivity(rightMenuIntent);
+                startWebActivity("https://www.ycdsb.ca/stau/contact/", item.getTitle().toString());
                 break;
+            case R.id.classroom:
+                startWebActivity("https://classroom.google.com/u/1/", item.getTitle().toString());
+                break;
+            case R.id.d2l:
+                startWebActivity("https://ycdsb.elearningontario.ca/d2l/folio/main/Index", item.getTitle().toString());
+                break;
+            case R.id.blueprint:
+                startWebActivity("https://app.myblueprint.ca/?returnUrl=/", item.getTitle().toString());
+                break;
+            case R.id.library:
+                startWebActivity("https://sites.google.com/ycdsbk12.ca/staulibrary", item.getTitle().toString());
+                break;
+            case R.id.guidance:
+                startWebActivity("https://sites.google.com/ycdsbk12.ca/stauguidance", item.getTitle().toString());
+                break;
+
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void startWebActivity(String url, String title) {
+        Intent rightMenuIntent = new Intent(this, WebActivity.class);
+        rightMenuIntent.putExtra(WEB_SELECT, url);
+        rightMenuIntent.putExtra(WEB_NAME, title);
+        startActivity(rightMenuIntent);
+    }
+
+    public void startExternalActivity(String url, String title) {
+        Intent rightMenuIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+
+        if (rightMenuIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(rightMenuIntent);
+        } else {
+            rightMenuIntent = new Intent(this, WebActivity.class);
+            rightMenuIntent.putExtra(WEB_SELECT, url);
+            rightMenuIntent.putExtra(WEB_NAME, title);
+            startActivity(rightMenuIntent);
+        }
     }
 
     @Override
