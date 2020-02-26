@@ -7,21 +7,26 @@
             <menu>
                 <!--TODO:add icons later-->
                 <item
+                    android:icon="@drawable/ic_home"
                     android:id="@+id/aug_home"
                     android:title="St. Augustine Home" />
                 <item
+                    android:icon="@drawable/ic_contacts"
                     android:id="@+id/staff_dir"
                     android:title="Staff Directory" />
 
                 <item
+                    android:icon="@drawable/ic_date"
                     android:id="@+id/calendar"
                     android:title="Events/Calendar" />
 
                 <item
+                    android:icon="@drawable/ic_news"
                     android:id="@+id/titan_times"
                     android:title="Titan Times" />
 
                 <item
+                    android:icon="@drawable/ic_apps"
                     android:id="@+id/app_site"
                     android:title="App Site" />
             </menu>
@@ -29,6 +34,7 @@
         <item android:title="Online Environments">
             <menu>
                 <item
+                    android:icon="@drawable/ic_class"
                     android:id="@+id/classroom"
                     android:title="Google Classroom" />
 
@@ -41,6 +47,7 @@
         <item android:title="Tools">
             <menu>
                 <item
+                    android:icon="@drawable/ic_refresh"
                     android:id="@+id/reset_password"
                     android:title="Reset YCDSB Password" />
                 <item
