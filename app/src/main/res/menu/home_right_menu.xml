@@ -51,18 +51,22 @@
                     android:id="@+id/reset_password"
                     android:title="Reset YCDSB Password" />
                 <item
+                    android:icon="@drawable/ic_dashboard"
                     android:id="@+id/blueprint"
                     android:title="My Blueprint" />
 
                 <item
+                    android:icon="@drawable/ic_local_library"
                     android:id="@+id/library"
                     android:title="Library" />
 
                 <item
+                    android:icon="@drawable/ic_live_help"
                     android:id="@+id/guidance"
                     android:title="Guidance" />
 
                 <item
+                    android:icon="@drawable/ic_share"
                     android:id="@+id/share_app"
                     android:title="Share This App!" />
             </menu>
@@ -75,10 +79,12 @@
                     android:title="Twitter" />
 
                 <item
+                    android:icon="@drawable/ic_camera"
                     android:id="@+id/insta"
                     android:title="Instagram" />
 
                 <item
+                    android:icon="@drawable/ic_email"
                     android:id="@+id/contact"
                     android:title="Contact" />
             </menu>
