@@ -47,16 +47,18 @@ public class GetCafMenuTask extends AsyncTask<String, Void, List<CafMenuItem>> {
             Map<String, Object> cafImages = Objects.requireNonNull(imageTask.getResult()).getData();
             String itemName;
             List<CafMenuItem> items = new ArrayList<>();
-            for (Map.Entry<String, Object> entry : (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getData())).entrySet()) {
+            for (Map.Entry<String, Object> entry :
+                    (Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getData())).entrySet()) {
                 itemName = entry.getKey().trim();
                 assert cafImages != null;
                 boolean hasImage = cafImages.containsKey(itemName) &&
                         !((String) Objects.requireNonNull(cafImages.get(itemName))).equalsIgnoreCase("");
                 String imgUrl = hasImage ?
-                        ((String) cafImages.get(itemName)) : "https://i.kym-cdn.com/photos/images/original/001/067/012/a30.jpg_large";
+                        ((String) cafImages.get(itemName))
+                        : "https://i.kym-cdn.com/photos/images/original/001/067/012/a30.jpg_large";
                 Bitmap img = null;
                 try {
-                    img = Picasso.get().load(imgUrl).resize(300, 400).rotate(90).centerCrop().get();
+                    img = Picasso.get().load(imgUrl).resize(300, 400).centerCrop().get();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

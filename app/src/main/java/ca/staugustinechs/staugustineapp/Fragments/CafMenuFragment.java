@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -30,7 +30,7 @@ public class CafMenuFragment extends Fragment {
 
     private GetCafMenuTask task, task2;
     private RecyclerView menu, menuRegular;
-    private View layout, loadingCircle, cmDivider, offline;
+    private View layout, loadingCircle, cmDivider, offline, loadingBar;
     private TextView cmDailyHeader;
 
     @Nullable
@@ -43,6 +43,7 @@ public class CafMenuFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         layout = view.findViewById(R.id.cmLayout);
         loadingCircle = view.findViewById(R.id.cmLoadingCircle);
+        loadingBar = view.findViewById(R.id.cafHorizontalLoading);
         offline = getLayoutInflater().inflate(R.layout.offline_layout, null);
 
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("EST"));
@@ -80,6 +81,7 @@ public class CafMenuFragment extends Fragment {
 
         task2 = new GetCafMenuTask(this, false);
         task2.execute();
+        loadingBar.setVisibility(View.VISIBLE);
     }
 
     public void updateMenu(List<CafMenuItem> items, boolean dailyMenu){
@@ -96,12 +98,13 @@ public class CafMenuFragment extends Fragment {
                     menuRegular.setPadding(0, 16, 0, 0);
                 }
             }else{
+                loadingBar.setVisibility(View.GONE);
                 menuRegular.setAdapter(adapter);
             }
 
             loadingCircle.setVisibility(View.GONE);
             layout.setVisibility(View.VISIBLE);
-            ((LinearLayout) ((ScrollView) getView()).getChildAt(0)).removeView(offline);
+            ((RelativeLayout) ((ScrollView) getView()).getChildAt(0)).removeView(offline);
         }else{
             setOffline();
         }
@@ -110,11 +113,12 @@ public class CafMenuFragment extends Fragment {
     public void setOffline(){
         layout.setVisibility(View.GONE);
         loadingCircle.setVisibility(View.GONE);
+        loadingBar.setVisibility(View.GONE);
 
         task.cancel(true);
         task2.cancel(true);
 
-        ((LinearLayout) ((ScrollView) getView()).getChildAt(0)).addView(offline);
+        ((RelativeLayout) ((ScrollView) getView()).getChildAt(0)).addView(offline);
     }
 
     @Override
