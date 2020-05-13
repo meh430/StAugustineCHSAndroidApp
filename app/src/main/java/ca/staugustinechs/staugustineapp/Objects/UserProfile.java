@@ -1,6 +1,8 @@
 package ca.staugustinechs.staugustineapp.Objects;
 
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +31,7 @@ public class UserProfile {
     private String messagingToken;
     private ProfileIcon icon;
     private List<String> notifications;
+    private List<Note> userNotes = new ArrayList<>();
 
     public UserProfile(String uid, Map<String, Object> infoData, Map<String, Object> data){
         this.uid = uid;
@@ -44,10 +47,19 @@ public class UserProfile {
         if(infoData.containsKey("msgToken")){
             messagingToken = (String) infoData.get("msgToken");
         }
-
         schedule = (List<String>) data.get("classes");
         clubs = (List<String>) data.get("clubs");
         badges = (List<String>) data.get("badges");
+        if (infoData.containsKey("notes")) {
+            for (Map<String, Object> noteData : (List<Map<String, Object>>) infoData.get("notes")) {
+                Note note = new Note((String) noteData.get("title"),
+                        (String) noteData.get("contents"), (String) noteData.get("dueDate"));
+                note.setState((boolean) noteData.get("done"));
+                userNotes.add(note);
+            }
+
+            Log.e("NOTES", userNotes.toString());
+        }
 
         picsOwned = new ArrayList<Integer>();
         if(((List) data.get("picsOwned")).get(0) instanceof Integer){
@@ -265,5 +277,13 @@ public class UserProfile {
                     .document(this.getUid()).update("badges", FieldValue.arrayRemove(clubBadge))
                     .addOnCompleteListener(listener);
         }
+    }
+
+    public List<Note> getUserNotes() {
+        return userNotes;
+    }
+
+    public void setNotes(ArrayList<Note> noteList) {
+        userNotes = noteList;
     }
 }

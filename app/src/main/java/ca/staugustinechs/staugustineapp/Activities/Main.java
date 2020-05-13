@@ -55,6 +55,7 @@ import ca.staugustinechs.staugustineapp.Fragments.HomeFragment;
 import ca.staugustinechs.staugustineapp.Fragments.SettingsFragment;
 import ca.staugustinechs.staugustineapp.Fragments.SongsFragment;
 import ca.staugustinechs.staugustineapp.Fragments.SpiritMetersFragment;
+import ca.staugustinechs.staugustineapp.Fragments.TasksFragment;
 import ca.staugustinechs.staugustineapp.Fragments.TitanTagFragment;
 import ca.staugustinechs.staugustineapp.Interfaces.IconGetter;
 import ca.staugustinechs.staugustineapp.Interfaces.UserGetter;
@@ -378,6 +379,10 @@ public class Main extends AppCompatActivity
                 //SWITCH TO FAQ
                 toolbar.setTitle("FAQ");
                 changeFragment(new FaqFragment());
+                break;
+            case R.id.nav_notes:
+                toolbar.setTitle("Tasks");
+                changeFragment(new TasksFragment());
                 break;
             case R.id.nav_prayer:
                 //launch form in browser

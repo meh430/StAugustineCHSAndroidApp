@@ -67,6 +67,7 @@ public class FaqFragment extends Fragment {
         } else {
             setOffline();
         }
+
     }
 
     private void setOffline() {

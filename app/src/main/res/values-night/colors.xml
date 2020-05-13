@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="edit">#807F7F</color>
     <color name="textColor">#FFFFFF</color>
     <color name="drawerBackground">#000000</color>
     <color name="windowBackground">#000000</color>
