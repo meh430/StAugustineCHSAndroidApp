@@ -3,11 +3,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/taskLayout"
     tools:context=".Fragments.TasksFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/noteFilter"
+        app:singleSelection="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:checked="true"
+            android:textAlignment="center"
+            android:id="@+id/allNotes"
+            android:layout_width="wrap_content"
+            android:checkable="true"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chip_background"
+            android:button="@android:color/transparent"
+            android:padding="6dp"
+            android:text="All"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+
+            android:textAlignment="center"
+            android:checkable="true"
+            android:id="@+id/todoNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chip_background"
+            android:button="@android:color/transparent"
+            android:padding="6dp"
+            android:text="To Do"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:textAlignment="center"
+            android:checkable="true"
+            android:id="@+id/overdueNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chip_background"
+            android:button="@android:color/transparent"
+            android:padding="6dp"
+            android:text="Over Due"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+
+            android:textAlignment="center"
+            android:checkable="true"
+            android:id="@+id/doneNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chip_background"
+            android:button="@android:color/transparent"
+            android:padding="6dp"
+            android:text="Done"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/noteFilter"
         android:id="@+id/noteScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

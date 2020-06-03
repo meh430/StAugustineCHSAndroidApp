@@ -24,12 +24,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import ca.staugustinechs.staugustineapp.Activities.Main;
 import ca.staugustinechs.staugustineapp.AppUtils;
@@ -47,6 +52,8 @@ public class TasksFragment extends Fragment {
     private static RViewAdapter_Notes noteAdapter;
     private FloatingActionButton noteFab;
     private RelativeLayout root;
+    private ChipGroup noteFilter;
+    private int clickedChip = R.id.allNotes;
 
 
     public TasksFragment() {
@@ -73,6 +80,75 @@ public class TasksFragment extends Fragment {
             Log.e("Notes", noteList.toString());
             emptyList = getView().findViewById(R.id.noNotes);
             noteFab = getView().findViewById(R.id.noteFab);
+            noteFilter = getView().findViewById(R.id.noteFilter);
+            noteFilter.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(ChipGroup group, int checkedId) {
+                    switch (checkedId) {
+
+                        case R.id.allNotes:
+                            clickedChip = R.id.allNotes;
+                            Log.e("CHIP", "all notes");
+                            noteAdapter.setNotes(noteList, noteList);
+                            break;
+
+                        case R.id.todoNotes:
+                            clickedChip = R.id.todoNotes;
+                            Log.e("CHIP", "todo notes");
+
+                            ArrayList<Note> toDoList = new ArrayList<>();
+                            for (Note note : noteList) {
+                                if (!note.isDone()) {
+                                    toDoList.add(note);
+                                }
+                            }
+
+                            noteAdapter.setNotes(noteList, toDoList);
+                            break;
+
+                        case R.id.overdueNotes:
+                            clickedChip = R.id.overdueNotes;
+                            Log.e("CHIP", "overdue notes");
+
+                            String strCurrDate = AppUtils.getDate();
+                            SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy 'at' HH:mm:ss", Locale.CANADA);
+                            try {
+                                Date currDate = format.parse(strCurrDate);
+
+                                ArrayList<Note> overDueNotes = new ArrayList<>();
+                                for (Note note : noteList) {
+                                    Date noteDate = format.parse(note.getDueDate());
+                                    if (!noteDate.after(currDate) && !note.isDone()) {
+                                        overDueNotes.add(note);
+                                    }
+                                }
+
+                                noteAdapter.setNotes(noteList, overDueNotes);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            break;
+
+                        case R.id.doneNotes:
+                            clickedChip = R.id.doneNotes;
+                            Log.e("CHIP", "done notes");
+
+                            ArrayList<Note> doneNotes = new ArrayList<>();
+                            for (Note note : noteList) {
+                                if (note.isDone()) {
+                                    doneNotes.add(note);
+                                }
+                            }
+
+                            noteAdapter.setNotes(noteList, doneNotes);
+                            break;
+
+                        default:
+                            noteFilter.check(clickedChip);
+                            Log.e("Deselected", "Dont do anything?");
+                    }
+                }
+            });
             noteFab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -100,7 +176,8 @@ public class TasksFragment extends Fragment {
                                     calendar.get(Calendar.DAY_OF_MONTH));
                             datePick.setTitle("Set Due Date");
                             datePick.show();
-
+                            noteFilter.check(R.id.allNotes);
+                            clickedChip = R.id.allNotes;
                         }
                     });
                     noteDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -139,6 +216,8 @@ public class TasksFragment extends Fragment {
             } else {
                 emptyList.setVisibility(View.GONE);
             }
+
+            noteFilter.check(R.id.allNotes);
         } else {
             setOffline();
         }
@@ -149,7 +228,6 @@ public class TasksFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tasks, container, false);
-
     }
 
     private void setOffline() {
@@ -192,7 +270,8 @@ public class TasksFragment extends Fragment {
             String strDate = (strMonth) + "-" + strDay + "-" + year + " at " + strHour + ":" + strMin + ":00";
             Note note = new Note(title, content, strDate);
             noteList.add(note);
-            noteAdapter.setNotes(noteList);
+
+            noteAdapter.setNotes(noteList, noteList);
             Main.PROFILE.setNotes(noteList);
 
             FirebaseFirestore.getInstance().
