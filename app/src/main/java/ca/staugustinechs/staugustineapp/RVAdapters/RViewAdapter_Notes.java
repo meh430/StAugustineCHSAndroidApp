@@ -97,7 +97,7 @@ public class RViewAdapter_Notes extends RecyclerView.Adapter<RViewAdapter_Notes.
                     AlertDialog.Builder markDoneDialog = new AlertDialog.Builder(Objects.requireNonNull(con));
                     markDoneDialog.setTitle("Mark As Done?");
                     markDoneDialog.setMessage("Are you done with this task?");
-                    markDoneDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    markDoneDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             current.setState(true);
@@ -112,7 +112,7 @@ public class RViewAdapter_Notes extends RecyclerView.Adapter<RViewAdapter_Notes.
                         }
                     });
 
-                    markDoneDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    markDoneDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //do nothing
