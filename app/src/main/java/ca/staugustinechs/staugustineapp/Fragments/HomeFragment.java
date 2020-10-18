@@ -371,19 +371,19 @@ public class HomeFragment extends Fragment implements ClubAnnounGetter {
                                 dayView.setText(dayNum);
                             } else {
                                 if (!today.contains("Saturday") && !today.contains("Sunday")) {
-                                    if (dayNum.trim().equals("1") || dayNum.trim().equals("2")) {
-                                        dayView.setText("Day " + dayNum);
+                                    if (dayNum.trim().equals("A") || dayNum.trim().equals("B")) {
+                                        dayView.setText("Cohort " + dayNum);
                                     } else {
                                         dayView.setVisibility(View.GONE);
                                         return;
                                     }
                                 } else {
-                                    if (dayNum.trim().equals("1") || dayNum.trim().equals("2")) {
-                                        int finalDay = 1;
-                                        if (dayNum.trim().equals("1")) {
-                                            finalDay = 2;
+                                    if (dayNum.trim().equals("A") || dayNum.trim().equals("B")) {
+                                        String finalDay = "A";
+                                        if (dayNum.trim().equals("A")) {
+                                            finalDay = "B";
                                         }
-                                        dayView.setText("On Monday it will be a Day " + finalDay);
+                                        dayView.setText("On Monday it will be Cohort " + finalDay);
                                     } else {
                                         dayView.setVisibility(View.GONE);
                                         return;

@@ -72,18 +72,18 @@ public class DayWidget extends AppWidgetProvider {
                                 day = dayNum;
                             } else {
                                 if (!today.contains("Saturday") && !today.contains("Sunday")) {
-                                    if (dayNum.trim().equals("1") || dayNum.trim().equals("2")) {
-                                        day = "Day " + dayNum;
+                                    if (dayNum.trim().equals("A") || dayNum.trim().equals("B")) {
+                                        day = "Cohort " + dayNum;
                                     } else {
-                                        day = "Day " + dayNum;
+                                        day = "Cohort " + dayNum;
                                     }
                                 } else {
-                                    if (dayNum.trim().equals("1") || dayNum.trim().equals("2")) {
-                                        int finalDay = 1;
-                                        if (dayNum.trim().equals("1")) {
-                                            finalDay = 2;
+                                    if (dayNum.trim().equals("A") || dayNum.trim().equals("B")) {
+                                        String finalDay = "A";
+                                        if (dayNum.trim().equals("A")) {
+                                            finalDay = "B";
                                         }
-                                        day = "On Monday, it will be a Day " + finalDay;
+                                        day = "On Monday, it will be Cohort " + finalDay;
                                     }
                                 }
                             }
