@@ -30,7 +30,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import ca.staugustinechs.staugustineapp.Activities.Main;
@@ -47,6 +50,10 @@ public class AppUtils {
     public static int SUPER_VOTE_MIN;
     public static int STARTING_POINTS, ATTENDING_EVENT_POINTS, JOINING_CLUB_POINTS;
     public static boolean SHOW_LOGO_IN_TT, ADD_K12_TO_TT;
+
+    public static String getDate() {
+        return new SimpleDateFormat("MM-dd-yyyy 'at' HH:mm:ss", Locale.CANADA).format(new Date());
+    }
 
     public static boolean shouldGetFile(String imgName, Activity activity) {
         File file = activity.getFileStreamPath(imgName);

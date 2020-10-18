@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginEnd="@dimen/note_dialog"
+        android:layout_marginStart="@dimen/note_dialog"
+        android:layout_marginBottom="@dimen/note_dialog"
+        android:layout_marginTop="@dimen/note_dialog"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title:" />
+
+    <EditText
+        android:id="@+id/titleEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/note_dialog"
+        android:layout_marginEnd="@dimen/note_dialog"
+        android:layout_marginBottom="@dimen/note_dialog"
+        android:background="@drawable/edit_states"
+        android:hint="Title"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:padding="8dp" />
+
+    <TextView
+        android:layout_marginStart="@dimen/note_dialog"
+        android:layout_marginEnd="@dimen/note_dialog"
+        android:layout_marginBottom="8dp"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contents:" />
+
+    <EditText
+        android:id="@+id/contentEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/note_dialog"
+        android:layout_marginEnd="@dimen/note_dialog"
+        android:background="@drawable/edit_states"
+        android:hint="Content"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:padding="8dp" />
+
+</LinearLayout>

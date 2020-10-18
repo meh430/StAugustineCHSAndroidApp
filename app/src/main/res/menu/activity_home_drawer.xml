@@ -26,6 +26,11 @@
             android:title="Song Requests" />
 
         <item
+            android:id="@+id/nav_notes"
+            android:icon="@drawable/ic_note_add"
+            android:title="Tasks" />
+
+        <item
             android:id="@+id/nav_prayer"
             android:icon="@drawable/ic_prayer"
             android:title="Prayer Requests" />

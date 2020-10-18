@@ -79,11 +79,11 @@ public class GetUserTask extends AsyncTask<String, Void, List<UserProfile>> impl
                     DocumentSnapshot infoDoc = userInfoTask.getResult();
                     if(infoDoc.exists()) {
                         UserProfile user = new UserProfile(docId, infoDoc.getData(), docs.get(0).getData());
-
                         if(getImg){
                             GetProfileIconsTask getProfileIconsTask = new GetProfileIconsTask(activity,
                                     GetProfileIconsTask.IconGetType.SINGLE);
-                            List<ProfileIcon> icons = getProfileIconsTask.getProfileIcons(new Integer[]{user.getProfilePic()});
+                            List<ProfileIcon> icons =
+                                    getProfileIconsTask.getProfileIcons(new Integer[]{user.getProfilePic()});
                             user.setLocalIcon(icons.get(0));
                         }
 

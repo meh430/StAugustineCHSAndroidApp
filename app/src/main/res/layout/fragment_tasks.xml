@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/taskLayout"
+    tools:context=".Fragments.TasksFragment">
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/noteFilter"
+        app:singleSelection="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:checked="true"
+            android:textAlignment="center"
+            android:id="@+id/allNotes"
+            android:layout_width="wrap_content"
+            android:checkable="true"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chip_background"
+            android:button="@android:color/transparent"
+            android:padding="6dp"
+            android:text="All"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+
+            android:textAlignment="center"
+            android:checkable="true"
+            android:id="@+id/todoNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chip_background"
+            android:button="@android:color/transparent"
+            android:padding="6dp"
+            android:text="To Do"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:textAlignment="center"
+            android:checkable="true"
+            android:id="@+id/overdueNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chip_background"
+            android:button="@android:color/transparent"
+            android:padding="6dp"
+            android:text="Over Due"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+
+            android:textAlignment="center"
+            android:checkable="true"
+            android:id="@+id/doneNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chip_background"
+            android:button="@android:color/transparent"
+            android:padding="6dp"
+            android:text="Done"
+            app:checkedIcon="@null"
+            app:checkedIconEnabled="false" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/noteFilter"
+        android:id="@+id/noteScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:id="@+id/noNotes"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You don't have any notes" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_round_playlist_add_24px"
+        android:id="@+id/noteFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

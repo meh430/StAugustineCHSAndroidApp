@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="edit">#CBC8C8</color>
+    <color name="doneColor">#689F38</color>
+    <color name="overdueColor">#E64A19</color>
     <color name="colorPrimary">#8d1230</color>
     <color name="colorPrimaryDark">#460817</color>
     <color name="colorAccent">#d8af1c</color>
