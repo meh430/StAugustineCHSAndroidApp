@@ -6,12 +6,12 @@ apply plugin: 'io.fabric'
 android {
     signingConfigs {
     }
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "ca.staugustinechs.staugustineapp"
-        minSdkVersion 23
-        targetSdkVersion 29
-        versionName '1.15'
+        minSdkVersion 26
+        targetSdkVersion 30
+        versionName '1.16'
         versionCode 16
     }
     buildTypes {
