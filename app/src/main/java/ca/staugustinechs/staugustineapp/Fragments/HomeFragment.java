@@ -23,7 +23,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.crashlytics.android.Crashlytics;
+//import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -280,7 +281,9 @@ public class HomeFragment extends Fragment implements ClubAnnounGetter {
             this.quote.setText(quotestring);
         }
         catch (Exception e) {
-            Crashlytics.log("Failed to update quote");
+           // Crashlytics.log("Failed to update quote");
+            FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+            crashlytics.log("Failed to update quote");
         }
     }
 
@@ -297,7 +300,9 @@ public class HomeFragment extends Fragment implements ClubAnnounGetter {
             return news;
         } else {
             if (AppUtils.isNetworkAvailable(this.getActivity())) {
-                Crashlytics.log("Couldn't retrieve website!");
+                //Crashlytics.log("Couldn't retrieve website!");
+                FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+                crashlytics.log("Couldn't retrieve website!");
             }
             return new ArrayList<NewsItem>();
         }

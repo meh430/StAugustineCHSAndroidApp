@@ -28,7 +28,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.crashlytics.android.Crashlytics;
+//import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -123,7 +124,10 @@ public class Main extends AppCompatActivity
                 setContentView(R.layout.activity_home);
 
                 //SET CRASHLYTICS IDENTIFIER
-                Crashlytics.setUserIdentifier(FirebaseAuth.getInstance().getUid());
+               // Crashlytics.setUserIdentifier(FirebaseAuth.getInstance().getUid());
+             // FirebaseCrashlytics.setUserIdentifier(FirebaseAuth.getInstance().getUid());
+              FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+              crashlytics.setUserId(FirebaseAuth.getInstance().getUid());
 
                 //SET TOOLBAR
                 toolbar = (Toolbar) findViewById(R.id.toolbar);

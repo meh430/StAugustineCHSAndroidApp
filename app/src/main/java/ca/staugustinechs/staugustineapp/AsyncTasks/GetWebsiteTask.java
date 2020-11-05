@@ -2,7 +2,8 @@ package ca.staugustinechs.staugustineapp.AsyncTasks;
 
 import android.os.AsyncTask;
 
-import com.crashlytics.android.Crashlytics;
+//import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.squareup.okhttp.Dns;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -56,7 +57,9 @@ public class GetWebsiteTask extends AsyncTask<String, Void, String> {
                 } catch (Exception e) {
                     //CAN'T CONNECT OR SOME OTHER ERROR OCCURED
                     e.printStackTrace();
-                    Crashlytics.logException(e);
+                   // Crashlytics.logException(e);
+                    FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+                    crashlytics.log(e.getMessage());
                     return null;
                 }/* finally {
                         try {
